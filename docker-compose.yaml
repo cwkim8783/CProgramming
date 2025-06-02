@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile   # 같은 디렉터리의 Dockerfile 사용
+    container_name: c-dev
+    init: true                 # PID 1 문제 예방(tini)
+    volumes:
+      - .:/workspace           # 현재 리포 → /workspace
+    working_dir: /workspace
+    command: sleep infinity    # 컨테이너를 계속 대기 상태로
+    environment:
+      - TZ=Asia/Seoul
