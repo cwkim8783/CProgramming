@@ -13,11 +13,8 @@ Complex complex_mul(Complex a, Complex b);
 Complex complex_div(Complex a, Complex b);
 Complex complex_conj(Complex z);
 
-Complex complex_make(double a, double b){
-    Complex ret2 = (Complex){a,b};
-
-    return ret2;
-}
+// 생성자 선언 (정의는 complex.c에 있음)
+Complex complex_make(double a, double b);
 
 // 출력 및 입력 함수
 void complex_print(Complex z);

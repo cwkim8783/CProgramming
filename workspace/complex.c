@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include "complex.h"
 
+// 생성자
+Complex complex_make(double a, double b) {
+    return (Complex){a, b};
+}
+
 // 덧셈
 Complex complex_add(Complex a, Complex b) {
     return (Complex){a.real + b.real, a.imag + b.imag};
