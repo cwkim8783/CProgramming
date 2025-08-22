@@ -4,6 +4,7 @@
 #include "complex.h"
 #include "dataframe.h"
 #include "save_load.h"
+#include "fft.h"
 
 void test_complex(void){
     Complex z1 = complex_make(3.0,  4.0);
@@ -42,11 +43,35 @@ void test_saveload(void) {
     df_destroy(df);
 }
 
+void test_fft(void) {
+    const char *infile  = "data/data_2sin20t.txt"; // 입력 데이터 파일
+    const char *outfile = "data/fft_data_2sin20t.txt"; // FFT 크기 스펙트럼 저장 파일
+
+    if (fft_file_to_magnitude_txt(infile, outfile) == 0) {
+        printf("Saved FFT magnitude to '%s'\n", outfile);
+    } else {
+        fprintf(stderr, "FFT test failed.\n");
+    }
+}
+
+void test_fft_complex(void) {
+    const char *infile  = "data/data_2sin20t+sin16t-cos35t-3sin(5t-25deg).txt";
+    const char *outfile = "data/fft_data_2sin20t+sin16t-cos35t-3sin(5t-25deg).txt";
+
+    if (fft_file_to_magnitude_txt(infile, outfile) == 0) {
+        printf("Saved FFT magnitude to '%s'\n", outfile);
+    } else {
+        fprintf(stderr, "FFT complex test failed.\n");
+    }
+}
+
 int main(void) {
     // test_complex();
     test_dataframe();
     // test_dataframe();
     test_saveload();
+    test_fft();
+    test_fft_complex();
 
 
     return 0;
